@@ -105,7 +105,7 @@ celerybeat.pid
 omissions.py
 .env
 .venv
-.ini
+config.ini
 env/
 venv/
 ENV/

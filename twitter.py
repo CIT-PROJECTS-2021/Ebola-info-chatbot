@@ -21,7 +21,7 @@ api = tweepy.API(auth)
 #public_tweets = api.home_timeline()
 
 user = 'MinofHealthUG'
-limit = 10
+limit = 20
 
 tweets = api.user_timeline(screen_name = user, count = limit, tweet_mode = 'extended')
 
@@ -37,7 +37,7 @@ try:
                 text = tweet.full_text
             f.write(text)
             f.write('\n\n')
-            if tweet_num > 2:
+            if tweet_num > 4:
                 break
 except Exception as err:
     print("An error occurred: ", err)

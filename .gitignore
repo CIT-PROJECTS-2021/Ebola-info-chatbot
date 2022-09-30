@@ -102,8 +102,10 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+omissions.py
 .env
 .venv
+config.ini
 env/
 venv/
 ENV/

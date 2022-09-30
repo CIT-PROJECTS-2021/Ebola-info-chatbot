@@ -49,7 +49,7 @@ def message_handler(update, context):
             matches = {'1' : 'latest', '2' : 'facts', '3' : 'transmission', '4' : 'symptoms', '5' : 'prevention', '6' : 'treatment'}
             input = matches[input]
         menu_handler(input, update, context)
-    elif input == 'hi':
+    elif input == 'hi' or input == 'hello':
         welcome(update, context)
     elif input == 'menu':
         menu(update, context)

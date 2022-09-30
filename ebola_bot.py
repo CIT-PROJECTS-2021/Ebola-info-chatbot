@@ -22,7 +22,9 @@ def welcome(update, context):
 
    Get information and guidance about EBOLA.
 
-   Reply with a number corresponding to any topic to explore it :
+   Reply with a number corresponding to any topic or the topic name to explore it :
+
+   Type 'menu' for the menu.
     '''
     update.message.reply_text(message)
     menu(update, context)
@@ -41,7 +43,7 @@ def menu_handler(option, update, context):
 def message_handler(update, context):
     input = update.message.text
     input = input.lower()
-    
+
     if input in ['1','2','3','4','5','6', 'latest', 'facts', 'transmission', 'treatment', 'symptoms', 'prevention']:
         if input in ['1','2','3','4','5','6']:
             matches = {'1' : 'latest', '2' : 'facts', '3' : 'transmission', '4' : 'symptoms', '5' : 'prevention', '6' : 'treatment'}

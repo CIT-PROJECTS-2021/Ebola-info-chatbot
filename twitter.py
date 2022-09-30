@@ -21,7 +21,7 @@ api = tweepy.API(auth)
 #public_tweets = api.home_timeline()
 
 user = 'MinofHealthUG'
-limit = 20
+limit = 30
 
 tweets = api.user_timeline(screen_name = user, count = limit, tweet_mode = 'extended')
 
@@ -35,9 +35,11 @@ try:
                 text = tweet.retweeted_status.full_text
             except:
                 text = tweet.full_text
+            if 'Touching a person infected with Ebola' in text:
+                continue
             f.write(text)
             f.write('\n\n')
-            if tweet_num > 4:
+            if tweet_num > 7:
                 break
 except Exception as err:
     print("An error occurred: ", err)

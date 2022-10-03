@@ -1,6 +1,6 @@
 import os
-import telegram.ext
-import twitter
+import telegram.ext # from python-telegram-bot module
+import twitter # import twitter.py to run it and save tweets to latest.txt file
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -37,8 +37,8 @@ def menu_handler(option, update, context):
             try:
                 update.message.reply_text(line)
             except:
+                # handles error that comes with send a message when there's no text (at new lines in file)
                 continue
-        #print(data)
 
 def message_handler(update, context):
     input = update.message.text
@@ -49,7 +49,7 @@ def message_handler(update, context):
             matches = {'1' : 'latest', '2' : 'facts', '3' : 'transmission', '4' : 'symptoms', '5' : 'prevention', '6' : 'treatment'}
             input = matches[input]
         menu_handler(input, update, context)
-    elif input == 'hi' or input == 'hello':
+    elif input in ['hi', 'hello', 'how are you', 'how are you?']:
         welcome(update, context)
     elif input == 'menu':
         menu(update, context)
@@ -61,10 +61,11 @@ updater = telegram.ext.Updater(TOKEN, use_context=True)
 disp = updater.dispatcher
 
 # handle various data and commands from the frontend
-disp.add_handler(telegram.ext.CommandHandler("hi", welcome))
-disp.add_handler(telegram.ext.CommandHandler("help", help))
-disp.add_handler(telegram.ext.CommandHandler("menu", menu))
-disp.add_handler(telegram.ext.CommandHandler("invalid_response", invalid_response))
+# disp.add_handler(telegram.ext.CommandHandler("hi", welcome))
+# disp.add_handler(telegram.ext.CommandHandler("start", welcome))
+# disp.add_handler(telegram.ext.CommandHandler("help", help))
+# disp.add_handler(telegram.ext.CommandHandler("menu", menu))
+# disp.add_handler(telegram.ext.CommandHandler("invalid_response", invalid_response))
 disp.add_handler(telegram.ext.MessageHandler(telegram.ext.Filters.text, message_handler))
 
 # start updater and fetch updates from telegram

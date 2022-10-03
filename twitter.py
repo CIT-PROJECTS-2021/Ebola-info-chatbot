@@ -18,11 +18,10 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-#public_tweets = api.home_timeline()
-
 user = 'MinofHealthUG'
-limit = 30
+limit = 20
 
+# fetch tweets
 tweets = api.user_timeline(screen_name = user, count = limit, tweet_mode = 'extended')
 
 try:
@@ -32,14 +31,17 @@ try:
         if 'ebola' in tweet.full_text.lower():
             tweet_num += 1
             try:
+                # to fetch full text for retweets; since twitter api has a limit of characters sent
                 text = tweet.retweeted_status.full_text
             except:
+                # fetch full text for normal tweets
                 text = tweet.full_text
-            if 'Touching a person infected with Ebola' in text:
-                continue
+            # add tweets to latest.txt file
             f.write(text)
             f.write('\n\n')
-            if tweet_num > 7:
+
+            # limit to 5 tweets
+            if tweet_num > 5:
                 break
 except Exception as err:
     print("An error occurred: ", err)

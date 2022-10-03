@@ -1,6 +1,6 @@
 import os
 import telegram.ext # from python-telegram-bot module
-import twitter
+import twitter # import twitter.py to run it and save tweets to latest.txt file
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -37,8 +37,8 @@ def menu_handler(option, update, context):
             try:
                 update.message.reply_text(line)
             except:
+                # handles error that comes with send a message when there's no text (at new lines in file)
                 continue
-        #print(data)
 
 def message_handler(update, context):
     input = update.message.text
